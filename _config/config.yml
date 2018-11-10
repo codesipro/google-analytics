@@ -2,9 +2,9 @@
 Name: googleanalytics
 After: 'framework/*','cms/*'
 ---
-SiteConfig:
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - SilverStripers\GoogleAnalytics\GoogleAnalyticsConfigExtension
-Controller:
+SilverStripe\Control\Controller:
   extensions:
     - SilverStripers\GoogleAnalytics\GoogleAnalyticsControllerExtension

@@ -2,38 +2,46 @@
 
 namespace SilverStripers\GoogleAnalytics;
 
-use DataExtension;
-use FieldList;
-use TextField;
-use DropdownField;
-use GridField;
-use GridFieldConfig_RelationEditor;
-use Controller;
-use SiteConfig;
-use Director;
+
+
+
+
+
+
+
+
+
 use SilverStripers\GoogleAnalytics\GoogleTrackEvent;
-
-
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Control\Controller;
+use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\Control\Director;
+use SilverStripe\ORM\DataExtension;
 
 
 class GoogleAnalyticsConfigExtension extends DataExtension {
 
 	private static $db = array(
-		'GoogleAnalyticsTrackingID' 		=> 'Varchar(50)',
-		'GoogleAnalyticsPosition'			=> 'Enum("Head,Body", "Head")',
-		'GoogleAnalyticsTrackDomain'		=> 'Varchar(200)'
+		'GoogleAnalyticsTrackingID' => 'Varchar(50)',
+		'GoogleAnalyticsPosition' => 'Enum("Head,Body", "Head")',
+		'GoogleAnalyticsTrackDomain' => 'Varchar(200)'
 	);
 
 	private static $has_many = array(
-		'GoogleTrackEvents'					=> GoogleTrackEvent::class
+		'GoogleTrackEvents'	=> GoogleTrackEvent::class
 	);
 
 	function updateCMSFields(FieldList $fields){
 		$fields->addFieldsToTab('Root.Integrations.GoogleAnalytics', array(
 			TextField::create('GoogleAnalyticsTrackingID'),
 			DropdownField::create('GoogleAnalyticsPosition')->setSource(array(
-				'Head'		=> 'Head',
-				'Body'		=> 'Before the closing body tag'
+				'Head' => 'Head',
+				'Body' => 'Before the closing body tag'
 			)),
 			TextField::create('GoogleAnalyticsTrackDomain'),
 			new GridField('GoogleTrackEvents', 'GoogleTrackEvents', $this->owner->GoogleTrackEvents(), new GridFieldConfig_RelationEditor(50))
@@ -41,9 +49,8 @@ class GoogleAnalyticsConfigExtension extends DataExtension {
 
 	}
 
-
 	public static function CanTrackEvents(Controller $controller){
-		$bIsContentController = is_a($controller, 'ContentController');
+		$bIsContentController = is_a($controller, ContentController::class);
 
 		if($bIsContentController && SiteConfig::current_site_config()->GoogleAnalyticsTrackingID){
 			$strCurrentDomain = str_replace(Director::protocol(), '', Director::protocolAndHost());
@@ -53,4 +60,4 @@ class GoogleAnalyticsConfigExtension extends DataExtension {
 		}
 	}
 
-} 
+}

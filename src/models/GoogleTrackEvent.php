@@ -2,8 +2,13 @@
 
 namespace SilverStripers\GoogleAnalytics;
 
-use DataObject;
-use TreeMultiselectField;
+
+
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Forms\TreeMultiselectField;
+use SilverStripe\ORM\DataObject;
+
 
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
@@ -24,11 +29,11 @@ class GoogleTrackEvent extends DataObject {
 	);
 
 	private static $has_one = array(
-		'SiteConfig'		=> 'SiteConfig'
+		'SiteConfig'		=> SiteConfig::class
 	);
 
 	private static $many_many = array(
-		'Pages'				=> 'SiteTree'
+		'Pages'				=> SiteTree::class
 	);
 
 	private static $summary_fields = array(
@@ -48,7 +53,7 @@ class GoogleTrackEvent extends DataObject {
 		}
 
 		$fields->removeByName('Pages');
-		$fields->addFieldToTab('Root.Main', TreeMultiselectField::create('Pages', 'Select Pages (leave empty for all the pages)')->setSourceObject('SiteTree'));
+		$fields->addFieldToTab('Root.Main', TreeMultiselectField::create('Pages', 'Select Pages (leave empty for all the pages)')->setSourceObject(SiteTree::class));
 
 
 		return $fields;
