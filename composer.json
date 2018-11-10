@@ -1,7 +1,7 @@
 {
     "name": "silverstripers/googleanalytics",
     "description": "google analytics module silverstripers",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "google analytics"],
     "authors": [
         {
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "3.*"
+        "silverstripe/framework": "^4"
     },
     "extra": {
         "installer-name": "google-analytics"
