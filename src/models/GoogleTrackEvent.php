@@ -1,4 +1,10 @@
 <?php
+
+namespace SilverStripers\GoogleAnalytics;
+
+use DataObject;
+use TreeMultiselectField;
+
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
  * User: nivankafonseka

@@ -1,4 +1,12 @@
 <?php
+
+namespace SilverStripers\GoogleAnalytics;
+
+use Extension;
+use Director;
+use SiteConfig;
+use Requirements;
+
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
  * User: nivankafonseka
