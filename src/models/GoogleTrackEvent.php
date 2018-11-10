@@ -2,13 +2,10 @@
 
 namespace SilverStripers\GoogleAnalytics;
 
-
-
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\TreeMultiselectField;
 use SilverStripe\ORM\DataObject;
-
 
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
@@ -21,19 +18,19 @@ use SilverStripe\ORM\DataObject;
 class GoogleTrackEvent extends DataObject {
 
 	private static $db = array(
-		'Target'			=> 'Varchar(300)',
-		'EventType'			=> 'Enum("Click,Hover", "Click")',
-		'Category'			=> 'Varchar(100)',
-		'Action'			=> 'Varchar(100)',
-		'Label'				=> 'Varchar(100)'
+		'Target' => 'Varchar(300)',
+		'EventType' => 'Enum("Click,Hover", "Click")',
+		'Category' => 'Varchar(100)',
+		'Action' => 'Varchar(100)',
+		'Label' => 'Varchar(100)'
 	);
 
 	private static $has_one = array(
-		'SiteConfig'		=> SiteConfig::class
+		'SiteConfig' => SiteConfig::class
 	);
 
 	private static $many_many = array(
-		'Pages'				=> SiteTree::class
+		'Pages' => SiteTree::class
 	);
 
 	private static $summary_fields = array(
@@ -55,8 +52,7 @@ class GoogleTrackEvent extends DataObject {
 		$fields->removeByName('Pages');
 		$fields->addFieldToTab('Root.Main', TreeMultiselectField::create('Pages', 'Select Pages (leave empty for all the pages)')->setSourceObject(SiteTree::class));
 
-
 		return $fields;
 	}
 
-} 
+}

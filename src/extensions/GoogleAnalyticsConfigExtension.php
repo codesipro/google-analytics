@@ -2,15 +2,6 @@
 
 namespace SilverStripers\GoogleAnalytics;
 
-
-
-
-
-
-
-
-
-
 use SilverStripers\GoogleAnalytics\GoogleTrackEvent;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
@@ -22,7 +13,6 @@ use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataExtension;
-
 
 class GoogleAnalyticsConfigExtension extends DataExtension {
 
@@ -44,7 +34,7 @@ class GoogleAnalyticsConfigExtension extends DataExtension {
 				'Body' => 'Before the closing body tag'
 			)),
 			TextField::create('GoogleAnalyticsTrackDomain'),
-			new GridField('GoogleTrackEvents', 'GoogleTrackEvents', $this->owner->GoogleTrackEvents(), new GridFieldConfig_RelationEditor(50))
+			GridField::create('GoogleTrackEvents', 'GoogleTrackEvents', $this->owner->GoogleTrackEvents(), GridFieldConfig_RelationEditor::create(50))
 		));
 
 	}

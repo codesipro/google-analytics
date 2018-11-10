@@ -2,15 +2,10 @@
 
 namespace SilverStripers\GoogleAnalytics;
 
-
-
-
-
 use SilverStripe\Control\Director;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\Requirements;
 use SilverStripe\Core\Extension;
-
 
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
@@ -22,20 +17,14 @@ use SilverStripe\Core\Extension;
 
 class GoogleAnalyticsControllerExtension extends Extension {
 
-
 	function onAfterInit(){
 
 		if(GoogleAnalyticsConfigExtension::CanTrackEvents($this->owner)){
 
 			$this->IncludeGATrackingCode();
 			$this->IncludeTrackingEvents();
-
-
 		}
-
-
 	}
-
 
 	function IncludeGATrackingCode(){
 		$strCurrentDomain = str_replace(Director::protocol(), '', Director::protocolAndHost());
@@ -80,8 +69,6 @@ JS;
 
 			foreach($events as $event){
 
-
-
 				$strEvent = 'click';
 				if($event->EventType == 'Hover'){
 					$strEvent = 'mouseenter';
@@ -115,4 +102,4 @@ JS;
 		}
 	}
 
-} 
+}
