@@ -33,6 +33,8 @@ class GoogleTrackEvent extends DataObject {
 		'Pages' => SiteTree::class
 	);
 
+	private static $table_name = 'GoogleTrackEvent';
+
 	private static $summary_fields = array(
 		'Target',
 		'EventType',
