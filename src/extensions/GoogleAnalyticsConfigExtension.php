@@ -11,6 +11,8 @@ use GridFieldConfig_RelationEditor;
 use Controller;
 use SiteConfig;
 use Director;
+use SilverStripers\GoogleAnalytics\GoogleTrackEvent;
+
 
 
 
@@ -23,7 +25,7 @@ class GoogleAnalyticsConfigExtension extends DataExtension {
 	);
 
 	private static $has_many = array(
-		'GoogleTrackEvents'					=> 'GoogleTrackEvent'
+		'GoogleTrackEvents'					=> GoogleTrackEvent::class
 	);
 
 	function updateCMSFields(FieldList $fields){
