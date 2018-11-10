@@ -26,7 +26,7 @@ class GoogleAnalyticsConfigExtension extends DataExtension {
 		'GoogleTrackEvents'	=> GoogleTrackEvent::class
 	);
 
-	function updateCMSFields(FieldList $fields){
+	public function updateCMSFields(FieldList $fields){
 		$fields->addFieldsToTab('Root.Integrations.GoogleAnalytics', array(
 			TextField::create('GoogleAnalyticsTrackingID'),
 			DropdownField::create('GoogleAnalyticsPosition')->setSource(array(

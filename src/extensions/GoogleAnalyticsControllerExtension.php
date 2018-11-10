@@ -17,7 +17,7 @@ use SilverStripe\Core\Extension;
 
 class GoogleAnalyticsControllerExtension extends Extension {
 
-	function onAfterInit(){
+	public function onAfterInit(){
 
 		if(GoogleAnalyticsConfigExtension::CanTrackEvents($this->owner)){
 
@@ -26,7 +26,7 @@ class GoogleAnalyticsControllerExtension extends Extension {
 		}
 	}
 
-	function IncludeGATrackingCode(){
+	public function IncludeGATrackingCode(){
 		$strCurrentDomain = str_replace(Director::protocol(), '', Director::protocolAndHost());
 		$strID = SiteConfig::current_site_config()->GoogleAnalyticsTrackingID;
 		$strCode = <<<JS
@@ -52,7 +52,7 @@ JS;
 
 	}
 
-	function IncludeTrackingEvents(){
+	public function IncludeTrackingEvents(){
 
 		$page = $this->owner->data();
 		$events = SiteConfig::current_site_config()->GoogleTrackEvents()->where('EXISTS ( SELECT 1
