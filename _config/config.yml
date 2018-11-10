@@ -1,6 +1,8 @@
 ---
 Name: googleanalytics
-After: 'framework/*','cms/*'
+After:
+  - 'framework/*'
+  - 'cms/*'
 ---
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
