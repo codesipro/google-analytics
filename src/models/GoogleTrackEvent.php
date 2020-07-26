@@ -2,8 +2,8 @@
 
 namespace Silverstripers\GoogleAnalytics\models;
 
-use DataObject;
-use TreeMultiselectField;
+use Silverstripe\ORM\DataObject;
+use Silverstripe\Forms\TreeMultiselectField;
 
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
@@ -54,4 +54,4 @@ class GoogleTrackEvent extends DataObject {
 		return $fields;
 	}
 
-} 
+}

@@ -2,10 +2,10 @@
 
 namespace Silverstripers\GoogleAnalytics\extensions;
 
-use Extension;
-use Director;
-use SiteConfig;
-use Requirements;
+use Silverstripe\View\Requirements;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\Control\Director;
+use SilverStripe\Core\Extension;
 
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
@@ -110,4 +110,4 @@ JS;
 		}
 	}
 
-} 
+}
