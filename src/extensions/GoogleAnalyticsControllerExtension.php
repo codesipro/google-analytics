@@ -2,6 +2,7 @@
 
 namespace Silverstripers\GoogleAnalytics\extensions;
 
+use SilverStripers\GoogleAnalytics\GoogleAnalyticsConfigExtension;
 use Silverstripe\View\Requirements;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Control\Director;
