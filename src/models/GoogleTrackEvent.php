@@ -7,7 +7,6 @@ use Silverstripe\Forms\TreeMultiselectField;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\SiteTree;
 
-
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
  * User: nivankafonseka
@@ -28,6 +27,8 @@ class GoogleTrackEvent extends DataObject
         'Action' => 'Varchar(100)',
         'Label' => 'Varchar(100)'
     ];
+
+    private static $table_name = 'GoogleTrackEvent';
 
     private static $has_one = [
         'SiteConfig' => SiteConfig::class
