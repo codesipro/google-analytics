@@ -1,0 +1,4 @@
+mappings:
+  GoogleAnalyticsConfigExtension: Silverstripers\GoogleAnalytics\extensions\GoogleAnalyticsConfigExtension
+  GoogleAnalyticsControllerExtension: Silverstripers\GoogleAnalytics\extensions\GoogleAnalyticsControllerExtension
+  GoogleTrackEvent: Silverstripers\GoogleAnalytics\models\GoogleTrackEvent

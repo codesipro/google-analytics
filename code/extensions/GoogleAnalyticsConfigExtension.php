@@ -1,5 +1,18 @@
 <?php
 
+namespace Silverstripers\GoogleAnalytics\extensions;
+
+use DataExtension;
+use FieldList;
+use TextField;
+use DropdownField;
+use GridField;
+use GridFieldConfig_RelationEditor;
+use Controller;
+use SiteConfig;
+use Director;
+
+
 
 class GoogleAnalyticsConfigExtension extends DataExtension {
 
