@@ -3,7 +3,7 @@ Name: googleanalytics
 ---
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - SilverStripers\GoogleAnalytics\GoogleAnalyticsConfigExtension
+    - SilverStripers\GoogleAnalytics\extensions\GoogleAnalyticsConfigExtension
 SilverStripe\Control\Controller:
   extensions:
-    - SilverStripers\GoogleAnalytics\GoogleAnalyticsControllerExtension
+    - SilverStripers\GoogleAnalytics\extensions\GoogleAnalyticsControllerExtension

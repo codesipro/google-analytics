@@ -2,7 +2,7 @@
 
 namespace SilverStripers\GoogleAnalytics;
 
-use SilverStripers\GoogleAnalytics\GoogleTrackEvent;
+use SilverStripers\GoogleAnalytics\Models\GoogleTrackEvent;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\DropdownField;
@@ -14,40 +14,40 @@ use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataExtension;
 
-class GoogleAnalyticsConfigExtension extends DataExtension {
+class GoogleAnalyticsConfigExtension extends DataExtension
+{
+    private static $db = [
+        'GoogleAnalyticsTrackingID' => 'Varchar(50)',
+        'GoogleAnalyticsPosition' => 'Enum("Head,Body", "Head")',
+        'GoogleAnalyticsTrackDomain' => 'Varchar(200)'
+    ];
 
-	private static $db = array(
-		'GoogleAnalyticsTrackingID' => 'Varchar(50)',
-		'GoogleAnalyticsPosition' => 'Enum("Head,Body", "Head")',
-		'GoogleAnalyticsTrackDomain' => 'Varchar(200)'
-	);
+    private static $has_many = [
+        'GoogleTrackEvents' => GoogleTrackEvent::class
+    ];
 
-	private static $has_many = array(
-		'GoogleTrackEvents'	=> GoogleTrackEvent::class
-	);
+    public function updateCMSFields(FieldList $fields)
+    {
+        $fields->addFieldsToTab('Root.Integrations.GoogleAnalytics', [
+            TextField::create('GoogleAnalyticsTrackingID'),
+            DropdownField::create('GoogleAnalyticsPosition')->setSource([
+                'Head' => 'Head',
+                'Body' => 'Before the closing body tag'
+            ]),
+            TextField::create('GoogleAnalyticsTrackDomain'),
+            GridField::create('GoogleTrackEvents', 'GoogleTrackEvents', $this->owner->GoogleTrackEvents(), GridFieldConfig_RelationEditor::create(50))
+        ]);
+    }
 
-	public function updateCMSFields(FieldList $fields){
-		$fields->addFieldsToTab('Root.Integrations.GoogleAnalytics', array(
-			TextField::create('GoogleAnalyticsTrackingID'),
-			DropdownField::create('GoogleAnalyticsPosition')->setSource(array(
-				'Head' => 'Head',
-				'Body' => 'Before the closing body tag'
-			)),
-			TextField::create('GoogleAnalyticsTrackDomain'),
-			GridField::create('GoogleTrackEvents', 'GoogleTrackEvents', $this->owner->GoogleTrackEvents(), GridFieldConfig_RelationEditor::create(50))
-		));
+    public static function CanTrackEvents(Controller $controller)
+    {
+        $bIsContentController = is_a($controller, ContentController::class);
 
-	}
-
-	public static function CanTrackEvents(Controller $controller){
-		$bIsContentController = is_a($controller, ContentController::class);
-
-		if($bIsContentController && SiteConfig::current_site_config()->GoogleAnalyticsTrackingID){
-			$strCurrentDomain = str_replace(Director::protocol(), '', Director::protocolAndHost());
-			$arrDomains = explode(',', SiteConfig::current_site_config()->GoogleAnalyticsTrackDomain);
-			return in_array($strCurrentDomain, $arrDomains);
-
-		}
-	}
+        if ($bIsContentController && SiteConfig::current_site_config()->GoogleAnalyticsTrackingID) {
+            $strCurrentDomain = str_replace(Director::protocol(), '', Director::protocolAndHost());
+            $arrDomains = explode(',', SiteConfig::current_site_config()->GoogleAnalyticsTrackDomain);
+            return in_array($strCurrentDomain, $arrDomains);
+        }
+    }
 
 }
