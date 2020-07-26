@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripers\GoogleAnalytics;
+namespace SilverStripers\GoogleAnalytics\extensions;
 
 use SilverStripers\GoogleAnalytics\Models\GoogleTrackEvent;
 use SilverStripe\Forms\FieldList;
@@ -49,5 +49,4 @@ class GoogleAnalyticsConfigExtension extends DataExtension
             return in_array($strCurrentDomain, $arrDomains);
         }
     }
-
 }
