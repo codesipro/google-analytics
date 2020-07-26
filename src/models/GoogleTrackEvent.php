@@ -4,6 +4,9 @@ namespace Silverstripers\GoogleAnalytics\models;
 
 use Silverstripe\ORM\DataObject;
 use Silverstripe\Forms\TreeMultiselectField;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\CMS\Model\SiteTree;
+
 
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
@@ -27,11 +30,11 @@ class GoogleTrackEvent extends DataObject
     ];
 
     private static $has_one = [
-        'SiteConfig' => 'SiteConfig'
+        'SiteConfig' => SiteConfig::class
     ];
 
     private static $many_many = [
-        'Pages' => 'SiteTree'
+        'Pages' => SiteTree::class
     ];
 
     private static $summary_fields = [
@@ -52,7 +55,7 @@ class GoogleTrackEvent extends DataObject
         }
 
         $fields->removeByName('Pages');
-        $fields->addFieldToTab('Root.Main', TreeMultiselectField::create('Pages', 'Select Pages (leave empty for all the pages)')->setSourceObject('SiteTree'));
+        $fields->addFieldToTab('Root.Main', TreeMultiselectField::create('Pages', 'Select Pages (leave empty for all the pages)')->setSourceObject(SiteTree::class));
 
         return $fields;
     }
